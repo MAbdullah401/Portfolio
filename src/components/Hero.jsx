@@ -56,7 +56,7 @@ export default function Hero() {
           Muhammad Abdullah
         </h1>
         <p className="mt-3 font-display text-xl text-accent-blue sm:text-2xl">
-          Web Developer, building with React
+          Full stack developer & UI/UX designer
         </p>
 
         <p className="mt-6 font-body text-base leading-relaxed text-ink-muted sm:text-lg">
