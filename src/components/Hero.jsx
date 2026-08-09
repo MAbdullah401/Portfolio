@@ -1,31 +1,41 @@
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight, ArrowDownToLine } from 'lucide-react'
 import TypingCode from './TypingCode.jsx'
 import portrait from '../assets/portrait.png'
 
 export default function Hero() {
+  const [fade, setFade] = useState(1)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Fully faded out by the time you've scrolled one viewport height down.
+      const fadeDistance = window.innerHeight * 0.9
+      const ratio = 1 - Math.min(window.scrollY / fadeDistance, 1)
+      setFade(ratio)
+    }
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
     <section id="top" className="relative mx-auto flex min-h-screen max-w-6xl flex-col items-center justify-center gap-14 px-6 pt-28 sm:px-10 lg:flex-row lg:justify-between lg:gap-8 lg:pt-24">
-      {/* cinematic portrait, centered behind the whole hero */}
+      {/* cinematic portrait, pinned to the viewport — fades with scroll instead of moving */}
       <img
-  src={portrait}
-  alt="Muhammad Abdullah"
-  style={{
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    height: '85vh',
-    width: 'auto',
-    maxWidth: 'none',
-    opacity: 0.55,
-    pointerEvents: 'none',
-    WebkitMaskImage:
-      'radial-gradient(ellipse 60% 70% at center, black 40%, transparent 90%)',
-    maskImage:
-      'radial-gradient(ellipse 60% 70% at center, black 40%, transparent 90%)',
-  }}
-/>
+        src={portrait}
+        alt="Muhammad Abdullah"
+        className="pointer-events-none left-1/2 top-1/2 -z-10 h-[85vh] w-auto max-w-none -translate-x-1/2 -translate-y-1/2 mix-blend-luminosity sm:h-[90vh]"
+        style={{
+          position: 'fixed',
+          opacity: 0.5 * fade,
+          transition: 'opacity 0.15s linear',
+          maskImage:
+            'linear-gradient(to bottom, transparent 0%, black 15%, black 75%, transparent 100%)',
+          WebkitMaskImage:
+            'linear-gradient(to bottom, transparent 0%, black 15%, black 75%, transparent 100%)',
+        }}
+      />
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
@@ -40,14 +50,14 @@ export default function Hero() {
         <h1 className="mt-6 font-display text-4xl font-semibold leading-[1.1] tracking-tight text-ink sm:text-5xl lg:text-6xl">
           Muhammad Abdullah
         </h1>
-        <p className="mt-8 font-display text-xl text-accent-blue sm:mt-3 sm:text-2xl">
-          Full Stack Developer
+        <p className="mt-3 font-display text-xl text-accent-blue sm:text-2xl">
+          Web Developer, building with React
         </p>
 
         <p className="mt-6 font-body text-base leading-relaxed text-ink-muted sm:text-lg">
-          I build complete web applications end to end — from React interfaces
-          to Node.js and Django backends, backed by MongoDB — for businesses
-          that want to look as good online as they do in person.
+          I design and build fast, modern websites for businesses that want to
+          look as good online as they do in person — from first pixel to
+          production deploy.
         </p>
 
         <div className="mt-9 flex flex-col items-center gap-4 sm:flex-row lg:justify-start">
@@ -81,4 +91,3 @@ export default function Hero() {
     </section>
   )
 }
-
