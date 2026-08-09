@@ -40,7 +40,7 @@ export default function Hero() {
         <h1 className="mt-6 font-display text-4xl font-semibold leading-[1.1] tracking-tight text-ink sm:text-5xl lg:text-6xl">
           Muhammad Abdullah
         </h1>
-        <p className="mt-3 font-display text-xl text-accent-blue sm:text-2xl">
+        <p className="mt-8 font-display text-xl text-accent-blue sm:mt-3 sm:text-2xl">
           Full Stack Developer
         </p>
 
