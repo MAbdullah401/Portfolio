@@ -60,7 +60,7 @@ export default function TypingCode() {
         <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
         <span className="ml-2 font-mono text-xs text-ink-faint">profile.js</span>
       </div>
-      <pre className="min-h-[13rem] px-5 py-4 font-mono text-[13px] leading-6 sm:text-sm">
+      <pre className="min-h-[13rem] max-w-full overflow-x-auto px-5 py-4 font-mono text-[13px] leading-6 sm:text-sm">
         {renderedLines.map((line, i) => (
           <div key={i}>
             {colorize(line)}
