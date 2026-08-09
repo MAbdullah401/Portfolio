@@ -22,25 +22,30 @@ export default function Hero() {
   return (
     <section id="top" className="relative mx-auto flex min-h-screen max-w-6xl flex-col items-center justify-center gap-14 px-6 pt-28 sm:px-10 lg:flex-row lg:justify-between lg:gap-8 lg:pt-24">
       {/* cinematic portrait, pinned to the viewport — fades with scroll instead of moving */}
-      <img
-        src={portrait}
-        alt="Muhammad Abdullah"
-        className="pointer-events-none left-1/2 top-1/2 -z-10 h-[85vh] w-auto max-w-none -translate-x-1/2 -translate-y-1/2 mix-blend-luminosity sm:h-[90vh]"
+      <div
         style={{
           position: 'fixed',
-          opacity: 0.5 * fade,
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          zIndex: 1,
+          pointerEvents: 'none',
+          opacity: 0.55 * fade,
           transition: 'opacity 0.15s linear',
-          maskImage:
-            'linear-gradient(to bottom, transparent 0%, black 15%, black 75%, transparent 100%)',
-          WebkitMaskImage:
-            'linear-gradient(to bottom, transparent 0%, black 15%, black 75%, transparent 100%)',
         }}
-      />
+      >
+        <img
+          src={portrait}
+          alt="Muhammad Abdullah"
+          className="h-[85vh] w-auto max-w-none sm:h-[90vh]"
+          style={{ display: 'block' }}
+        />
+      </div>
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: 'easeOut' }}
-        className="max-w-xl text-center lg:text-left"
+        className="relative z-10 max-w-xl text-center lg:text-left"
       >
         <span className="inline-flex items-center gap-2 rounded-full border border-white/[0.1] bg-white/[0.05] px-4 py-1.5 font-mono text-xs uppercase tracking-widest text-accent-mint">
           <span className="h-1.5 w-1.5 rounded-full bg-accent-mint" />
@@ -82,7 +87,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: 'easeOut', delay: 0.2 }}
-        className="w-full max-w-md"
+        className="relative z-10 w-full max-w-md"
       >
         <div className="animate-float">
           <TypingCode />
